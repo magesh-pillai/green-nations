@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, HostBinding, HostListener } from '@angular/core';
+import { Component, Input, OnInit, HostBinding, 
+  HostListener, ElementRef, Renderer } from '@angular/core';
 import { MenuItem } from "../../services/menu.types";
 import { MenuService } from "../../services/menu.service";
 import { Router } from "@angular/router";
@@ -21,9 +22,26 @@ export class MenuItemComponent implements OnInit {
   popupTop = 34;
 
   constructor(private router:Router,
-              private menuService: MenuService) { }
+              private menuService: MenuService,
+              private el: ElementRef,
+              private renderer: Renderer) { }
 
   ngOnInit() {
+  }
+
+  @HostListener('click', ['$event'])
+  onClick(event) : void {
+    event.stopPropagation();
+
+    if (this.item.submenu) {
+      this.mouseInPopup = !this.mouseInPopup;
+    } else if (this.item.route) {
+      // force horizontal menus to close by sending a mouseleave event
+      let newEvent = new MouseEvent('mouseleave', {bubbles: true});
+      this.renderer.invokeElementMethod(
+        this.el.nativeElement, 'dispatchEvent', [newEvent]);
+      this.router.navigate(['/' + this.item.route]);
+    }
   }
 
   onPopupMouseEnter(event): void {
@@ -55,17 +73,6 @@ export class MenuItemComponent implements OnInit {
           this.popupTop = 0;
         }
       }
-    }
-  }
-
-  @HostListener('click', ['$event'])
-  onClick(event) : void {
-    event.stopPropagation();
-
-    if (this.item.submenu) {
-      this.mouseInPopup = !this.mouseInPopup;
-    } else if (this.item.route) {
-
     }
   }
 }
