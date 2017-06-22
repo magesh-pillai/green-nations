@@ -15,11 +15,13 @@ import { MenuItemComponent } from "./menus/menu-item/menu-item.component";
 import { MenuItem } from './services/menu.types';
 import { RouterModule } from "@angular/router";
 import { PopupMenuComponent } from "./menus/popup-menu/popup-menu.component";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     FrameworkBodyComponent,
