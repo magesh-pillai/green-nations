@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 import { FrameworkBodyComponent } from './framework-body/framework-body.component';
 import { ContentComponent } from './content/content.component';
 import { TitleBarComponent } from './title-bar/title-bar.component';
@@ -11,16 +13,18 @@ import { ScreenLarge } from './directives/screen-large.directive';
 import { ScreenBelowLarge } from './directives/screen-below-large.directive';
 import { MenuService } from './services/menu.service';
 import { MenuComponent } from "./menus/menu/menu.component";
-import { MenuItemComponent } from "./menus/menu-item/menu-item.component";
+import { MenuItemComponent } from './menus/menu-item/menu-item.component';
 import { MenuItem } from './services/menu.types';
-import { RouterModule } from "@angular/router";
-import { PopupMenuComponent } from "./menus/popup-menu/popup-menu.component";
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { PopupMenuComponent } from './menus/popup-menu/popup-menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SignInComponent } from './users/sign-in/sign-in.component';
+import { RegisterUserComponent } from './users/register-user/register-user.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     BrowserAnimationsModule
   ],
   declarations: [
@@ -33,7 +37,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ScreenBelowLarge,
     MenuComponent,
     MenuItemComponent,
-    PopupMenuComponent
+    PopupMenuComponent,
+    SignInComponent,
+    RegisterUserComponent
   ],
   providers: [
     FrameworkConfigService,
