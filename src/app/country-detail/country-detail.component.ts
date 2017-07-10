@@ -69,5 +69,4 @@ export class CountryDetailComponent implements OnInit {
       err => this.errorMessage = 'Error updating country'
       );
   }
-
 }
